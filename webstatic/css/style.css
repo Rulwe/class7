@@ -1,0 +1,74 @@
+@font-face {
+	font-family: 'Genshin';
+	font-style: normal;
+	src: url('font/font-min.woff2') format('woff2');
+}
+
+body {
+    margin:0px;
+    padding:0px;
+}
+
+.rid_panel {
+    display:flex;
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:120px;
+    right:0;
+    justify-content: center;
+    align-items:center;
+}
+
+.rid {
+    margin: 0 auto;
+    text-align: center;
+    width:560px;
+    font-family: Genshin;
+    font-size: 128px;
+}
+
+.rbtn {
+    background-color: #FAFAFA;
+    color:#4A5366;
+    font-family: Genshin;
+    outline: 0;
+    cursor: pointer;
+    font-size: 22px;
+    border: 2px solid #4A5366;
+    border-radius: 60px;
+    height: 42px;
+    width: 220px;
+    align-items: center;
+    display: grid;
+    justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.page {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.round_btn {
+    height:32px;
+    width:32px;
+    border-radius: 60px;
+    background:#2E212E;
+    position: fixed;
+    display: grid;
+}
+
+.ring_btn {
+    background:#2E212E;
+    border-radius: 60px;
+    border: 3px solid #BCB35F;
+    height:16px;
+    width:16px;
+    justify-self: center;
+    align-self: center;
+}
