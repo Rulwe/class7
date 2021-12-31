@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>随机学号</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+
+<script type="text/javascript">
+    function rid(max) {
+        var id = Math.floor(Math.random() * max) + 1;
+        document.getElementById("sid").innerHTML = id;
+    }
+
+</script>
+
+<div class="rid_panel">
+    <div class="rid">
+        <p id="sid">点击抽取</p>
+    </div>
+    <div onclick="rid(53)" style="position: fixed;bottom: 72px;" class="rbtn">
+            <div class="round_btn">
+                <div class="ring_btn"></div>
+            </div>
+        <a>抽取</a>
+    </div>
+</div>
+</body>
+</html>
