@@ -9,9 +9,39 @@
 <body>
 
 <script type="text/javascript">
-    function rid(max) {
-        var id = Math.floor(Math.random() * max) + 1;
+    function start() {
+	document.getElementById("sbtn").style.display="none";
+	for(var i=1;i<=38;i++)
+	{
+	setTimeout("rid()",i*(20*(i/6)));
+	}
+	setTimeout("showmb()",5800);
+    }
+
+    function rid() {
+	var max = 53;
+	var ts = (new Date()).valueOf();
+        //var id = Math.floor(Math.random() * max) + 1;
+	var rs = ts + (new Date()).getSeconds() - ((new Date()).getSeconds()*33699) - ((new Date()).getSeconds()*(new Date()).getMinutes()*266);
+	var id = rs%max + 1;
         document.getElementById("sid").innerHTML = id;
+	document.getElementById("mbsid").innerHTML = id;
+    }
+
+
+    function showmb() {
+	document.getElementById("mb").style.display="grid";
+    }
+    function hidemb() {
+	document.getElementById("mb").style.display="none";
+	document.getElementById("sbtn").style.display="flex";
+    }
+
+    function showumb() {
+	document.getElementById("updatemb").style.display="grid";
+    }
+    function hideumb() {
+	document.getElementById("updatemb").style.display="none";
     }
 
 </script>
@@ -20,12 +50,63 @@
     <div class="rid">
         <p id="sid">点击抽取</p>
     </div>
-    <div onclick="rid(53)" style="position: fixed;bottom: 72px;" class="rbtn">
-            <div class="round_btn">
-                <div class="ring_btn"></div>
-            </div>
+    <div id="sbtn" onclick="start()" style="position: fixed;bottom: 72px;align-content:center;" class="rbtn">
+            <img style="position: fixed;justify-self:flex-start;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAMAAAAPzWOAAAAAsVBMVEVHcEwzMzMyMjIzMzMyMjIyMjIzMzMyMjI0NDQzMzMzMzMzMzMyMjIqKiozMzMyMjIzMzMzMzMzMzMyMjIyMjIzMzMyMjIzMzMzMzMkJCQzMzMzMzMzMzMyMjI1NTUzMzP/zDM9OjPouzM0NDNsXjP6yTP2xTPTqzNIQzN5ZzPSqjOvkDOghTOtjzNGQTM5NzNPSDM3NjP5yDPAnTPuvzOpizM1NTODbzPpvDOnijNXTjNKwoLwAAAAH3RSTlMAPLfrcYD3JFP4zPC2Boj9/jLOmO6gXKrhB4Mj3t8izqH2PwAAAhVJREFUWMO1WOmagjAMrCKKircinvXAWzwBj/d/sG1ZddWEFdjs/HMa56NJmiZlLBAZo92sdpVsVulWm20jw6KipTVM/gazobUiSFRqdY6iXquElEgkyzwQ5WQihERG5x+gf/JOQU3zj0irhd80+jkeCrl+sIaW5yGR14I0UiUeGqUUrlHkkVAk0EBVUjwywI60UnSR0pt3O3keA/nOS47leCzknrNO5TGhPp2XdFyR9M850nls6I+zH2QxXNgz53BwZvZiGGRzrwxJfHm3mg4emK52uFXyVsfQGrRdTwYvmKy3aJX6rnU1bG2zHAAsN5hlza/JWD29jvy/jVxrvt/PLff284rVXVm9New7/D+dT96d8E5nXwX7Fpn8DcQf/l6OLxEZHv0dIX5pCBET0mtpfxm/kuOLZNfQ2hTZisRWxuU4fqfH8lsmSKQzzIDkSvoDya6h9MsK8gZrQ1uZYycsmieZdVC9zZqAW8gweJiIJ4O2AHSTVQFnC0sXz3FXLNmArbIe4GbC0sJFLLE0A2yPKYBzhOUcF5mLJQewCssC7iAs97jIXiwdAJulESHZTvfvju3ShJgk2UjSnuQAkpQCkqJEUx5JCjXJlUFyedFcoyQXOk1rQdLk0LRbJI0fTQsatxnu07flNAMCzahCMzTRjG80g6SIdNiRtvPfwzXNmE/04ED09EH0CPP0HNSTz0G9D89BX3BUv7mYoU78AAAAAElFTkSuQmCC" width="32px" height="32px">
+	<div style="width: 100%;display: grid;justify-items: center;">
         <a>抽取</a>
+	</div>
+    </div>
+
+	<div style="position:fixed;right:24px;bottom:24px;border-radius: 60px;height:60px;width:60px;box-shadow: 0 0 6px #888888;">
+	<img onClick="showumb()" style="height:100%;width:100%;cursor: pointer;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAEtElEQVRoBe3BQWsc1wHA8f+bGVmN6wcLEsGeJ/BxezJbZjqLDoEXsgrZGPIlfOlHMLRBqzTQT5Ev4Pbq2xgeqWDR7MwS2ktPgh70ljUJLB6PlO5aMxWkUCeR1R1pV4cwvx+NRqPRaDQajWVEUbQVRdEWt8jhlgRB8LQsy2lZltMgCJ5yS1xuQRiGA+BPgAM4QE8pJay1hjVzWbMwDAdVVe3zc1opJay1hjVyWaMwDAdVVe3zblopJay1hjVxWZMwDAdVVe3z/2mllLDWGtbAZQ2CIPgcOGB52vf9cjKZfM2KCVas2+0+evPmzTeAoJ7K87zO0dHR31khhxUry9IHBPWJsix9VsxhxcqyfAEcUd9RWZYvWDGXFeh2u4983//tgwcP/pVl2aLdbv91Pp/vAT7LyaSUHw+Hw9PBYOAURbFzYePk5OSMGxLcUBAEnwMHgACOpJSfGGNmWutWnucxEHC1TErZM8bM+v3+5suXL/tVVb3PBSFEmmXZmBtwuIEwDAfAF4DgB908z2OtdcsYM5NS9oCMd8uklD1jzKzf729Op9PHVVW9z39VVRVGURRyA4JrCsNwUFXVPpfLpJQ9Y8xMa93K8zwGAn4sk1L2jDGzfr+/OZ1OHwPbXMLzvHGSJCnXILiGMAwHVVXtc7VMStkzxsy01q08z2Mg4AeZlLJnjJn1+/3N6XT6GNjmCp7njZMkSalJUFMYhoOqqvZZTial7BljZru7u+8tFosnXNjY2PhqOBye9fv9zel0+hjYZgme542TJEmpQVBDEARPgT9TT3bnzp0PhsPhGW/RWnuvXr36DNimBtd1k9Fo9A1LclhSFEVbQogvqS9YLBZP+InXr1//BtimpvPz899prX/Fkhx+4RyWlCTJd1VV/ZGahBDpxsbGV/zEvXv3/gl8S02u646MMd+zJJcaJpPJoVJKAJrlZFLKvcPDw9e7u7vv3b9///e+70cPHz78x+Hh4bzT6RwXRbED3GUJnueNR6PRmBpcarLWGqWUADRXy6SUPWPMTGvdOjs7M8AT4NPz8/NP2u32sziOi06nc1wUxQ5wlyt4njdOkiSlJpdrsNYapZQANJfLpJQ9Y8xMa93K8zwGAv7Hn8/ne+12+1kcx0Wn0zkuimIHuMslPM8bJ0mScg0u12StNUopAWh+LJNS9owxM611K8/zGAj4OX8+n++12+1ncRwXnU7nuCiKHeAub/E8b5wkSco1udyAtdb4vl8CGhDAkZTyY2PMTGvdyvM8BgLezZ/P53vtdvtZHMdFp9M5Pj099YFfc0EIkV7IuAHBCnS73UdlWfplWb7IsmyhtW7leR4DAcvJpJQ9Y8xsMBg4z58/V0KI0yRJvuOGBCsWBMEG8DegSz1HwAdZli1YIYcVcxznI6BLfV3HcT5ixRxWzHEcC1TUVzmOY1kxlxU7OTmZ+r5fAh9Sz/5oNPoLK+ayBpPJ5GullAA0SxBCHGRZ9gVr4LIm1lqjlBKA5gpCiIM0TQesicsaWWuNUkoAmksIIQ7SNB2wRi5rZq01SikBaN4ihDhI03TAmrncAmut8X3/30KID4UQFfCHLMu+5JcmiqKtKIq2aDQajUaj0Wgs4T9cbO9wrWXm6AAAAABJRU5ErkJggg==">
+	</div>
+
+	<p style="position:fixed;bottom:6px;color:#AAAAAA;font-family:Genshin">VERSION 1.1.r2022f0119</p>
+</div>
+
+<div id="mb" style="position:absolute;display:none;transition:opacity 0.3s;box-shadow: 0 0 6px #888888;height:400px;width:640px;background:#383f4f;border-radius:8px;left:50%;top:50%;transform: translate(-50%, -50%);">
+<div style="display:grid;width:100%;height:92%;align-items:flex-end;align-items: flex-end;justify-content: center;">
+<p id="mbsid" style="align-self: center;justify-self: center;font-family:Genshin;color:#EEEEEE;font-size:96px;">Null</p>
+
+<div onclick="hidemb()" style="align-content:center;justify-self: center;" class="rbtn">
+            <img style="position: fixed;justify-self:flex-start;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAMAAAAPzWOAAAAAsVBMVEVHcEwzMzMyMjIzMzMyMjIyMjIzMzMyMjI0NDQzMzMzMzMzMzMyMjIqKiozMzMyMjIzMzMzMzMzMzMyMjIyMjIzMzMyMjIzMzMzMzMkJCQzMzMzMzMzMzMyMjI1NTUzMzP/zDM9OjPouzM0NDNsXjP6yTP2xTPTqzNIQzN5ZzPSqjOvkDOghTOtjzNGQTM5NzNPSDM3NjP5yDPAnTPuvzOpizM1NTODbzPpvDOnijNXTjNKwoLwAAAAH3RSTlMAPLfrcYD3JFP4zPC2Boj9/jLOmO6gXKrhB4Mj3t8izqH2PwAAAhVJREFUWMO1WOmagjAMrCKKircinvXAWzwBj/d/sG1ZddWEFdjs/HMa56NJmiZlLBAZo92sdpVsVulWm20jw6KipTVM/gazobUiSFRqdY6iXquElEgkyzwQ5WQihERG5x+gf/JOQU3zj0irhd80+jkeCrl+sIaW5yGR14I0UiUeGqUUrlHkkVAk0EBVUjwywI60UnSR0pt3O3keA/nOS47leCzknrNO5TGhPp2XdFyR9M850nls6I+zH2QxXNgz53BwZvZiGGRzrwxJfHm3mg4emK52uFXyVsfQGrRdTwYvmKy3aJX6rnU1bG2zHAAsN5hlza/JWD29jvy/jVxrvt/PLff284rVXVm9New7/D+dT96d8E5nXwX7Fpn8DcQf/l6OLxEZHv0dIX5pCBET0mtpfxm/kuOLZNfQ2hTZisRWxuU4fqfH8lsmSKQzzIDkSvoDya6h9MsK8gZrQ1uZYycsmieZdVC9zZqAW8gweJiIJ4O2AHSTVQFnC0sXz3FXLNmArbIe4GbC0sJFLLE0A2yPKYBzhOUcF5mLJQewCssC7iAs97jIXiwdAJulESHZTvfvju3ShJgk2UjSnuQAkpQCkqJEUx5JCjXJlUFyedFcoyQXOk1rQdLk0LRbJI0fTQsatxnu07flNAMCzahCMzTRjG80g6SIdNiRtvPfwzXNmE/04ED09EH0CPP0HNSTz0G9D89BX3BUv7mYoU78AAAAAElFTkSuQmCC" width="32px" height="32px">
+	<div style="width: 100%;display: grid;justify-items: center;">
+        <a>完成</a>
+	</div>
     </div>
 </div>
+</div>
+
+<div id="updatemb" style="position:absolute;display:grid;transition:opacity 0.3s;box-shadow: 0 0 6px #888888;height:400px;width:640px;background:#383f4f;border-radius:8px;left:50%;top:50%;transform: translate(-50%, -50%);">
+<div style="display:grid;width:100%;height:92%;align-items:flex-end;align-items: flex-end;justify-content: center;">
+<p style="align-self:flex-start;font-weight: bold;justify-self: center;color:#EEEEEE;font-size:36px;line-height: 0.5;">更新公告</p>
+<div style="height:180px;width:520px;overflow-y:scroll;color:#DDDDDD;line-height:0.2;">
+<p>版本 1.1.r2022f0119</p>
+<br />
+<p>更新内容:</p>
+<p>*增加了抽取动画，并且增加了抽出弹窗</p>
+<p>*增加更新公告面板</p>
+<p>*修改优化随机算法，减少重复率，增加公平性</p>
+<p>*修复UI在某些浏览器下存在偏移和显示异常的问题</p>
+<p>*修复一些视觉问题，优化美术</p>
+<p>*修复了一些Bug和问题</p>
+<br />
+<p>已知问题:</p>
+<p>-一些浏览器下无法正常显示(例如IE)</p>
+<p>!建议使用Chrome、Firefox等浏览器</p>
+<p>-对于手机页面兼容性不好，这将在1.2修复</p>
+<p>-服务器位于国外，存在访问慢问题</p>
+</div>
+
+
+<div onclick="hideumb()" style="align-content:center;justify-self: center;" class="rbtn">
+            <img style="position: fixed;justify-self:flex-start;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAMAAAAPzWOAAAAAsVBMVEVHcEwzMzMyMjIzMzMyMjIyMjIzMzMyMjI0NDQzMzMzMzMzMzMyMjIqKiozMzMyMjIzMzMzMzMzMzMyMjIyMjIzMzMyMjIzMzMzMzMkJCQzMzMzMzMzMzMyMjI1NTUzMzP/zDM9OjPouzM0NDNsXjP6yTP2xTPTqzNIQzN5ZzPSqjOvkDOghTOtjzNGQTM5NzNPSDM3NjP5yDPAnTPuvzOpizM1NTODbzPpvDOnijNXTjNKwoLwAAAAH3RSTlMAPLfrcYD3JFP4zPC2Boj9/jLOmO6gXKrhB4Mj3t8izqH2PwAAAhVJREFUWMO1WOmagjAMrCKKircinvXAWzwBj/d/sG1ZddWEFdjs/HMa56NJmiZlLBAZo92sdpVsVulWm20jw6KipTVM/gazobUiSFRqdY6iXquElEgkyzwQ5WQihERG5x+gf/JOQU3zj0irhd80+jkeCrl+sIaW5yGR14I0UiUeGqUUrlHkkVAk0EBVUjwywI60UnSR0pt3O3keA/nOS47leCzknrNO5TGhPp2XdFyR9M850nls6I+zH2QxXNgz53BwZvZiGGRzrwxJfHm3mg4emK52uFXyVsfQGrRdTwYvmKy3aJX6rnU1bG2zHAAsN5hlza/JWD29jvy/jVxrvt/PLff284rVXVm9New7/D+dT96d8E5nXwX7Fpn8DcQf/l6OLxEZHv0dIX5pCBET0mtpfxm/kuOLZNfQ2hTZisRWxuU4fqfH8lsmSKQzzIDkSvoDya6h9MsK8gZrQ1uZYycsmieZdVC9zZqAW8gweJiIJ4O2AHSTVQFnC0sXz3FXLNmArbIe4GbC0sJFLLE0A2yPKYBzhOUcF5mLJQewCssC7iAs97jIXiwdAJulESHZTvfvju3ShJgk2UjSnuQAkpQCkqJEUx5JCjXJlUFyedFcoyQXOk1rQdLk0LRbJI0fTQsatxnu07flNAMCzahCMzTRjG80g6SIdNiRtvPfwzXNmE/04ED09EH0CPP0HNSTz0G9D89BX3BUv7mYoU78AAAAAElFTkSuQmCC" width="32px" height="32px">
+	<div style="width: 100%;display: grid;justify-items: center;">
+        <a>完成</a>
+	</div>
+    </div>
+</div>
+</div>
+
 </body>
 </html>
